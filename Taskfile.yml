@@ -11,3 +11,31 @@ tasks:
 
   hello3: echo "hello worlddd"
 
+  deploy:
+    internal: true
+    requires:
+      vars:
+        - ENV
+    preconditions:
+      - sh : command -v terraform
+        msg : "You need to have terraform installed"
+    cmds:
+      - echo "Deploying {{.ENV}}"
+
+  deploy/dev:
+    cmds:
+      - task: deploy
+        vars: { ENV: dev }
+
+  deploy/beta:
+    cmds:
+      - task: deploy
+        vars: { ENV: beta }
+
+  deploy/prod:
+    prompt: "You are sure to deploy to prod ?"
+    cmds:
+      - task: deploy
+        vars: { ENV: prod }
+
+
