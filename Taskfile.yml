@@ -6,8 +6,16 @@ includes:
     taskfile: ./devoxx-frontend/Taskfile.yml
     dir: ./devoxx-frontend
   backend:
-    taskfile: ./devoxx-backend/Taskfile.yml
+    taskfile: ./taskfile.go.yml
     dir: ./devoxx-backend
+    vars:
+      GENERATE: golang-server
+  cli:
+    taskfile: ./taskfile.go.yml
+    dir: ./devoxx-cli
+    vars:
+      GENERATE: cli
+
 
 tasks:
   hello:

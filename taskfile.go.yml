@@ -2,9 +2,12 @@ version: 3
 
 tasks:
   build:
+    require:
+      vars:
+        - GENERATE
     sources:
       - '**/*.go'
     generates:
-      - backend
+      - '{{.GENERATE}}'
     cmds:
       - go build
