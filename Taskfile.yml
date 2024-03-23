@@ -1,5 +1,14 @@
 version: 3
 
+
+includes:
+  frontend:
+    taskfile: ./devoxx-frontend/Taskfile.yml
+    dir: ./devoxx-frontend
+  backend:
+    taskfile: ./devoxx-backend/Taskfile.yml
+    dir: ./devoxx-backend
+
 tasks:
   hello:
     cmds:
@@ -12,6 +21,7 @@ tasks:
   hello3: echo "hello worlddd"
 
   deploy:
+
     internal: true
     requires:
       vars:
