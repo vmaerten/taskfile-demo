@@ -21,7 +21,9 @@ tasks:
   hello3: echo "hello worlddd"
 
   deploy:
-
+    deps:
+      - frontend:build
+      - backend:build
     internal: true
     requires:
       vars:
