@@ -10,7 +10,7 @@ includes:
       vars:
         BINARY: backend
   cli:
-    taskfile: http.....
+    taskfile: https://raw.githubusercontent.com/vmaerten/taskfile-demo/remove-taskfile/Taskfile.go.yml
     dir: ./cli
     vars:
       BINARY: cli
