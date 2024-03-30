@@ -1,0 +1,43 @@
+version: 3
+
+includes:
+  frontend:
+    taskfile: ./frontend/Taskfile.yml
+    dir: ./frontend
+  backend:
+      taskfile: ./Taskfile.go.yml
+      dir: ./backend
+      vars:
+        BINARY: backend
+  cli:
+    taskfile: http.....
+    dir: ./cli
+    vars:
+      BINARY: cli
+tasks:
+  deploy:
+    deps:
+      - frontend:build
+      - backend:build
+    internal: true
+    preconditions:
+      - sh: command -v terraform
+        msg: "Terraform needs to be installed"
+    requires:
+      vars:
+        - ENV
+    cmds:
+      - echo "deploying ... {{.ENV}}"
+
+  deploy/dev:
+    cmds:
+      - task: deploy
+        vars:
+          ENV: dev
+
+  deploy/prod:
+    prompt: "Are you sure to deploy to prod ?"
+    cmds:
+      - task: deploy
+        vars: { ENV: prod }
+

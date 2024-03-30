@@ -1,0 +1,13 @@
+version: 3
+
+tasks:
+  build:
+    requires:
+      vars:
+        - BINARY
+    sources:
+      - '**/*.go'
+    generates:
+      - '{{.BINARY}}'
+    cmds:
+      - go build

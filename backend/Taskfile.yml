@@ -1,0 +1,11 @@
+version: 3
+
+tasks:
+  build:
+    sources:
+      - '**/*.go'
+    generates:
+      - backend
+    cmds:
+      - go build
+
