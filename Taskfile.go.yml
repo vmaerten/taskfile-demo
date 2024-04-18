@@ -10,5 +10,4 @@ tasks:
     generates:
       - '{{.BINARY}}'
     cmds:
-      - echo "build from a remote taskfile"
       - go build

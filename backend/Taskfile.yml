@@ -6,6 +6,4 @@ tasks:
       - '**/*.go'
     generates:
       - backend
-    cmds:
-      - go build
-
+    cmd: go build

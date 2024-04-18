@@ -3,7 +3,7 @@ version: 3
 tasks:
   build:
     sources:
-      - src/**/*.tsx
+      - 'src/**/*.tsx'
     generates:
       - dist/index.html
       - dist/assets/*.js

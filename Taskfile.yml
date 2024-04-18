@@ -5,29 +5,31 @@ includes:
     taskfile: ./frontend/Taskfile.yml
     dir: ./frontend
   backend:
-      taskfile: ./Taskfile.go.yml
-      dir: ./backend
-      vars:
-        BINARY: backend
-  cli:
     taskfile: https://raw.githubusercontent.com/vmaerten/taskfile-demo/remove-taskfile/Taskfile.go.yml
+    dir: ./backend
+    vars:
+      BINARY: backend
+  cli:
+    taskfile: ./Taskfile.go.yml
     dir: ./cli
     vars:
       BINARY: cli
+
 tasks:
   deploy:
     deps:
       - frontend:build
       - backend:build
+      - cli:build
     internal: true
-    preconditions:
-      - sh: command -v terraform
-        msg: "Terraform needs to be installed"
     requires:
       vars:
         - ENV
+    preconditions:
+      - sh: command -v terraform
+        msg: "Terraform needs to be installed"
     cmds:
-      - echo "deploying ... {{.ENV}}"
+      - echo "deploying to {{.ENV}} ...."
 
   deploy/dev:
     cmds:
@@ -40,4 +42,3 @@ tasks:
     cmds:
       - task: deploy
         vars: { ENV: prod }
-
