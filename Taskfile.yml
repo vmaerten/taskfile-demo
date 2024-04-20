@@ -10,7 +10,7 @@ includes:
     vars:
       BINARY: backend
   cli:
-    taskfile: http.....
+    taskfile: ./Taskfile.go.yml
     dir: ./cli
     vars:
       BINARY: cli
@@ -27,9 +27,6 @@ tasks:
     preconditions:
       - sh: command -v terraform
         msg: "Terraform needs to be installed"
-    requires:
-      vars:
-        - ENV
     cmds:
       - echo "Deploying .. {{.ENV}} "
 
