@@ -19,8 +19,8 @@ tasks:
   deploy:
     internal: true
     deps:
-      - frontend:build
       - backend:build
+      - cli:build
     requires:
       vars:
         - ENV
@@ -41,4 +41,3 @@ tasks:
     cmds:
       - task: deploy
         vars: { ENV: prod }
-

@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+         # Repository name with owner. For example, actions/checkout
+         # Default: ${{ github.repository }}
+         repository: 'go-task/task'
+         ref: 'fix-multiple-includes'
+         path: go-task
+
+      - run: cd go-task && for counter in {1..50}; do echo "run $counter"; go run ./cmd/task --dir ../ deploy/dev -f ; done
